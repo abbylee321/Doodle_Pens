@@ -1,7 +1,6 @@
 // This should be a interesting introduction for middle-schoolers to the idea of DNA as a means of storing and transferring information.
 // The DNA Writer code uses a simple look-up table where each letter in the English alphabet is assigned a unique three letter nucleotide code. The three letters are chosen from the letters of the DNA bases – AGCT – similar to the way codons are organized in mRNA. Any unknown characters or punctuation are ignored.
-import "./styles.css";
-import { distance } from "./vector";
+import { distance } from "./vector.js";
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;

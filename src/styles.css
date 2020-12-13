@@ -21,7 +21,6 @@ button {
   padding: 5px 15px;
   margin: 0 3px;
   /* how to make button not disappear : z-index */
-}
 
 body {
   font-family: "Orbitron", sans-serif;
