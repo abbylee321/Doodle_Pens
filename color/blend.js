@@ -1,4 +1,4 @@
-import "./styles.css";
+// import "./styles.css";
 import { pointsAlongLine } from "./vector.js";
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
