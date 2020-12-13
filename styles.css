@@ -41,6 +41,27 @@ p {
   margin: 1em 0;
 } */
 
+.middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.holding_box {
+  border: 1px solid black;
+  margin: 50px;
+  padding: 50px;
+}
+.inner_box {
+  border: 1px solid white;
+  text-align: center;
+}
+
+.image_button_box {
+  display: flex;
+  flex-direction: column;
+}
+
 .button {
   width: 181px;
   height: 50px;
@@ -57,8 +78,8 @@ p {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .button:hover {
