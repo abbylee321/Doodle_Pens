@@ -11,35 +11,20 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-size: 40px;
   border: double;
+  text-align: center;
 }
 
 p {
   padding: 20px;
   font-size: 20px;
-  font-family: "Verdana", sans-serif;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 
 #box {
   background-color: var(--red);
-  padding: 20px;
-  /* @top-left-corner = @top-left-corner { <declaration-list> }; */
-  /* width: 130px;
-  margin: 20px;
-  padding: 10px; */
+  padding: 0 20px;
 }
-/* #line-hr {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 9px;
-  background: #a9a9a9;
-  border: none;
-} */
-
-/* #header {
-  border-top: 1px solid red;
-  margin: 1em 0;
-} */
 
 .middle {
   display: flex;
@@ -51,15 +36,19 @@ p {
   border: 1px solid black;
   margin: 50px;
   padding: 50px;
+  justify-content: center;
 }
 .inner_box {
-  border: 1px solid white;
+  /* border: 3px solid D2D0BA; */
+  /* border: 2px solid #d2d0ba; */
   text-align: center;
+  justify-content: center;
 }
 
 .image_button_box {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .button {
@@ -78,8 +67,7 @@ p {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  /* align-items: center;
-  justify-content: center; */
+  margin: 50px;
 }
 
 .button:hover {
@@ -97,16 +85,16 @@ p {
   color: #000;
 }
 
-/* #page-wrap {
-  width: 800px;
-  /* margin: 0 auto; */
-/* margin-top: -120px;
-  margin-left: -400px;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-} */
+.left,
+.right {
+  height: 50%;
+  width: 50%;
+  position: relative;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  /* padding-top: 20px; */
+}
 
 .option-row {
   display: inline flex;
