@@ -1,42 +1,20 @@
-// import "./styles.css";
 import { pointsAlongLine } from "./vector.js";
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 
+let home_button = document.getElementById("home");
 let pen3_button = document.getElementById("pen3");
 let pen1_button = document.getElementById("pen1");
 let pen2_button = document.getElementById("pen2");
-
-let restore = document.getElementById("undo");
+let clear = document.getElementById("clear");
 
 canvas.width = window.innerWidth; //resolution of canvas
 canvas.height = window.innerHeight;
-
-let undoStack = [];
-pushState();
-function pushState() {
-  undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height)); //add new element to array
-  // console.log(undoStack.length);
-  if (undoStack.length > 50) {
-    //can only undo 50 times (saves 10 strokes on canvas at a time otherwise too much data - RGB)
-    undoStack.shift();
-  }
-}
-restore.addEventListener("click", function () {
-  if (undoStack.length > 1) {
-    undoStack.pop();
-  }
-  let lastElement = undoStack[undoStack.length - 1];
-  ctx.putImageData(lastElement, 0, 0);
-  console.log(undoStack.length);
-});
 
 ctx.fillStyle = "#fffaf0"; //hue, saturation, lightness
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.strokeStyle = "rgba(20, 0, 0, 0.4)";
 ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-// ctx.globalCompositeOperation = "overlay";
-// ctx.globalCompositeOperation = "exclusion";
 let penDown = false;
 let last_x = 0;
 let last_y = 0;
@@ -44,6 +22,12 @@ let last_y = 0;
 pen3_button.addEventListener("click", changeBackground);
 pen1_button.addEventListener("click", firstPen);
 pen2_button.addEventListener("click", secondPen);
+home_button.addEventListener("click", homeButton);
+
+function homeButton() {
+  console.log("hello");
+  window.location.href = "index.html";
+}
 
 function changeBackground() {
   ctx.fillStyle = "hsl(" + 360 * Math.random() + ", 50%, 40%)";
@@ -52,16 +36,13 @@ function changeBackground() {
 
 if (document.getElementById("pen3").clicked == true) {
   changeBackground();
-  // document.getElementById('pen1').clicked = false;
 }
 if (document.getElementById("pen1").clicked == true) {
   firstPen();
-  // document.getElementById('pen1').clicked = false;
 }
 
 if (document.getElementById("pen2").clicked == true) {
   secondPen();
-  // document.getElementById('pen1').clicked = false;
 }
 
 function firstPen() {
@@ -100,10 +81,6 @@ function firstPen() {
       last_x = x;
       last_y = y;
     }
-  }
-
-  function paintEnd(x, y) {
-    pushState();
   }
 
   ctx.globalCompositeOperation = "difference";
@@ -148,13 +125,13 @@ function firstPen() {
     penDown = false;
     let x = evt.clientX;
     let y = evt.clientY;
-    paintEnd(x, y);
+    paintEnd2(x, y);
   });
 
   canvas.addEventListener("touchend", function (evt) {
     let x = last_x;
     let y = last_y;
-    paintEnd(x, y);
+    paintEnd2(x, y);
   });
 }
 
@@ -196,7 +173,7 @@ function paintMove2(x, y) {
 }
 
 function paintEnd2(x, y) {
-  pushState();
+  // pushState(); - original left over from Undo
 }
 
 function secondPen() {
@@ -242,12 +219,17 @@ function secondPen() {
     penDown = false;
     let x = evt.clientX;
     let y = evt.clientY;
-    paintEnd2(x, y);
+    // paintEnd2(x, y);
   });
 
   canvas.addEventListener("touchend", function (evt) {
     let x = last_x;
     let y = last_y;
-    paintEnd2(x, y);
+    // paintEnd2(x, y);
   });
 }
+
+clear.addEventListener("click", (e) => {
+  ctx.fillStyle = "#fffaf0";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});

@@ -1,4 +1,3 @@
-// This should be a interesting introduction for middle-schoolers to the idea of DNA as a means of storing and transferring information.
 // The DNA Writer code uses a simple look-up table where each letter in the English alphabet is assigned a unique three letter nucleotide code. The three letters are chosen from the letters of the DNA bases – AGCT – similar to the way codons are organized in mRNA. Any unknown characters or punctuation are ignored.
 import { distance } from "./vector.js";
 let canvas = document.getElementById("canvas");
@@ -11,18 +10,24 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.font = "50px Orbitron, sans-serif";
 ctx.fillStyle = "#04fb08";
 ctx.fillText("DNA PEN", 10, 50);
-// Ready to use the font in a canvas context
-// });
+let clear = document.getElementById("clear");
 
 let isDrawing = false;
 let x = 0;
 let y = 0;
 let last_x = 0;
 let last_y = 0;
-// let state = 1;
 
-var button = document.getElementById("testing");
+let home_button = document.getElementById("home");
+var button = document.getElementById("encode");
 button.addEventListener("click", backgroundClicked);
+
+home_button.addEventListener("click", homeButton);
+
+function homeButton() {
+  console.log("hello");
+  window.location.href = "index.html";
+}
 
 var emptyString = "";
 var index = 0;
@@ -100,8 +105,6 @@ function paintStart(x, y) {
   ctx.beginPath();
   ctx.font = `${Math.floor(12 + Math.random() * 30)}px 'Orbitron', sans-serif`;
   ctx.fillStyle = "#04fb08";
-  // ctx.shadowColor = "#0f9a02";
-  // ctx.shadowBlur = 20;
   ctx.fillText(emptyString[index], x, y);
   ctx.stroke();
   console.log(emptyString.length);
@@ -128,12 +131,10 @@ function paintMove2(x, y) {
     ctx.fillStyle = "#04fb08";
     let h_letters = 120;
     let s_letters = Math.floor(Math.random() * 100);
-    let l_letters = Math.floor(Math.random() * 100);
+    let l_letters = Math.floor(Math.random() * 130);
     let color_letters =
       "hsl(" + h_letters + ", " + s_letters + "%, " + l_letters + "%)";
     ctx.fillStyle = color_letters;
-    // ctx.shadowColor = "#0f9a02";
-    // ctx.shadowBlur = 20;
     ctx.fillText(emptyString[index], x, y);
     index++;
     if (index === emptyString.length) {
@@ -267,4 +268,15 @@ canvas.addEventListener("touchend", (e) => {
   x = last_x;
   y = last_y;
   paintEnd(x, y);
+});
+
+//clear
+clear.addEventListener("click", (e) => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.rect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#000000";
+  ctx.fill();
+  ctx.font = "50px Orbitron, sans-serif";
+  ctx.fillStyle = "#04fb08";
+  ctx.fillText("DNA PEN", 10, 50);
 });
